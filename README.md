@@ -60,6 +60,7 @@ Django application of the Bangazon Platform product site.
 ## Installation
 TODO: Describe the installation process
 
+```
 ├── README.md
 └── bangazonsite
     ├── bangazonsite
@@ -77,7 +78,7 @@ TODO: Describe the installation process
     │   ├── tests.py
     │   └── views.py
     └── manage.py
-
+```
 
 ## Usage
 TODO: Write usage instructions
