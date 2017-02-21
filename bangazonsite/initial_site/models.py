@@ -30,7 +30,7 @@ class ProductType(models.Model):
     @asimonia
 
     """
-    label = models.CharField(max_length=50)
+    label = models.CharField(max_length=50, default='Product')
 
     class Meta:
         verbose_name_plural = 'ProductTypes'
