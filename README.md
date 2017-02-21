@@ -12,6 +12,6 @@ TODO: Write usage instructions
 - [Alex Simonian](https://github.com/asimonia)
 - [Matt McCord](https://github.com/mccordgh)
 - [Drew Martin](https://github.com/Dmart331)
-- [Dani Adkins](https://github.com/itsdanirenae)
+- [Ali Kimbrell](https://github.com/alirk)
 
 
