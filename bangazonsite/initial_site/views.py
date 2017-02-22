@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.views.generic.list import ListView
 from django.views.generic.base import TemplateView
+from django.views.generic.detail import DetailView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth import login, logout, authenticate
 from django.http import HttpResponse, HttpResponseRedirect
@@ -21,8 +22,12 @@ class LoginSuccess(LoginRequiredMixin, TemplateView):
 class Register(TemplateView):
     template_name = 'initial_site/register.html'
 
-
+    
+class productDetailView(DetailView):
+    model = models.Product
+    
 # function views
+
 
 def get_products(request):
     products = models.Product.objects.order_by('product_type')
@@ -63,3 +68,5 @@ def login_user(request):
 def logout_user(request):
     logout(request)
     return HttpResponseRedirect(redirect_to='/')
+
+
