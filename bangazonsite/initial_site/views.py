@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic.list import ListView
+from django.views.generic.detail import DetailView
 from initial_site import models
 
 def get_products(request):
@@ -10,3 +10,6 @@ def get_products(request):
         'object_list': products,
         'departments_list': departments
         })
+
+class productDetailView(DetailView):
+	model = models.Product
