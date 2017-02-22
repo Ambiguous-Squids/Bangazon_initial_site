@@ -1,7 +1,7 @@
 <h1>Products</h1>
 <ol>
 	{% for product in object_list %}
-	  <li>{{ product.name }} - Dept: {{ product.product_type }} - ${{ product.price }} - Quantity: {{ product.quantity }} - Creator: {{ product.customer }}
+	  <li><a href="/products/{{ forloop.counter }}">{{ product.name }}</a>
 	  <br />
 	  	>> Description: {{ product.description }}
 	  </li>
