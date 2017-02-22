@@ -24,7 +24,7 @@ class ProductViewTests(TestCase):
         ball.save()
         
         client = Client()
-        response = client.get(reverse('products'))
+        response = client.get(reverse('initial_site:products'))
         
         self.assertQuerysetEqual(response.context['object_list'], ['<Product: Baseball>'])
 
