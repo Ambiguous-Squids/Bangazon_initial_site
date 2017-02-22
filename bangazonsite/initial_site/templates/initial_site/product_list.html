@@ -1,10 +1,8 @@
 <h1>Products</h1>
 <ol>
 	{% for product in object_list %}
-	  <li><a href="/products/{{ forloop.counter }}">{{ product.name }}</a>
-	  <br />
-	  	>> Description: {{ product.description }}
+	  <li>
+	  	<a href="/products/{{ forloop.counter }}">{{ product.name }}</a>
 	  </li>
-	  <br />
 	{% endfor %}
 </ol>
