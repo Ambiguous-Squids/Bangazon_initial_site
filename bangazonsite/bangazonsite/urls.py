@@ -19,5 +19,7 @@ from initial_site import views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^products/', views.ProductsView.as_view(), name='products')
+    url(r'^products/', views.ProductsView.as_view(), name='products'),
+    url(r'^addproducts/', views.AddProductsView.as_view(), name='addproducts')
+
 ]
