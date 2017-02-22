@@ -52,6 +52,10 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'bangazonsite.urls'
 
+FIXTURE_DIRS = (
+   '/initial_site/fixtures/',
+)
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
