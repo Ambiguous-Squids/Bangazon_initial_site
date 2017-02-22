@@ -2,8 +2,11 @@ from django.shortcuts import render
 from django.views.generic.list import ListView
 from initial_site import models
 
-class ProductsView(ListView):
-    model = models.Product
+def get_products(request):
+    products = models.Product.objects.order_by('product_type')
+    departments = models.ProductType.objects.order_by('label')
 
-    def get_queryset(self):
-        return models.Product.objects.all()
+    return render(request, 'initial_site/product_list.html', {
+        'object_list': products,
+        'departments_list': departments
+        })
