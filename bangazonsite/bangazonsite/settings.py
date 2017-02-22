@@ -37,7 +37,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
     'initial_site',
 ]
 
@@ -52,6 +51,10 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'bangazonsite.urls'
+
+FIXTURE_DIRS = (
+   '/initial_site/fixtures/',
+)
 
 TEMPLATES = [
     {

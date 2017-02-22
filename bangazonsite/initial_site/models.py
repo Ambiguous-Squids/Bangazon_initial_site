@@ -36,7 +36,7 @@ class ProductType(models.Model):
         verbose_name_plural = 'ProductTypes'
 
     def __str__(self):
-        return str(self.category)
+        return str(self.label)
 
 class PaymentType(models.Model):
     """
