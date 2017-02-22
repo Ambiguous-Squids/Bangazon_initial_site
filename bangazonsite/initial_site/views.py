@@ -13,3 +13,5 @@ class ProductsView(ListView):
 class AddProductsView(TemplateView):
     template_name = 'initial_site/add_products.html'
 
+
+
