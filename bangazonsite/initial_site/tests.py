@@ -26,4 +26,21 @@ class ProductViewTests(TestCase):
         client = Client()
         response = client.get(reverse('products'))
         
-        self.assertQuerysetEqual(response.context['object_list'], ['<Product: Baseball>'])
+        self.assertQuerysetEqual(response.context['object_list'], ['<Product: Baseball>']
+
+
+class CustomerTest(TestCase):
+	def test_is_a_customer(self):
+
+		david = models.Customer("123 Front St", "456 Back St","Smyrna", "Tennssee", "37167")
+		self.assertIsInstance(david, models.Customer)
+
+
+class TestAddProduct(TestCase):
+    """
+    Author:
+        @nchemsak
+    """
+    def test_add_a_product(self):
+        uselessMachine = models.Product('UselessMachine', 39.99, 5)
+        self.assertIsInstance(uselessMachine, models.Product)
