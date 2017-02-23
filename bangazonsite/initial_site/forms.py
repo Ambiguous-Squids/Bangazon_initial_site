@@ -12,3 +12,19 @@ class AddProductForm(forms.ModelForm):
     class Meta:
         model = Product
         fields = ('customer', 'name', 'product_type', 'description', 'price', 'quantity')
+
+class AddPaymentTypeForm(forms.ModelForm):
+
+    # customer = forms.ForeignKey(Customer)
+    payment_type_name = forms.CharField(max_length=16,help_text="Please enter the type of card you would like to add.")
+    first_name = forms.CharField(max_length=50,help_text="Please your first name")
+    last_name = forms.CharField(max_length=50,help_text="Please your last name")
+    account = forms.CharField(max_length=16,help_text="Please enter the card number.")
+    expiration_date = forms.DateField(help_text= "Please enter the expiration date.")
+    ccv = forms.CharField(max_length=3,help_text="Please enter the ccv code.")
+
+
+    class Meta:
+        model = Product
+        fields = ('customer','payment_type_name', 'first_name', 'last_name', 'account', 'expiration_date', 'ccv')
+

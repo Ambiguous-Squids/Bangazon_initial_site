@@ -13,5 +13,6 @@ urlpatterns = [
     url(r'^logout/', views.logout_user, name= 'logout'),
     url(r'^products/(?P<pk>\d+)/', views.productDetailView.as_view(), name='product_detail'),
     url(r'^products/', views.get_products, name='products'),
-    url(r'^add_product/$', views.add_product, name="add_product")
+    url(r'^add_product/$', views.add_product, name="add_product"),
+    url(r'^add_payment_type/$', views.add_payment_type, name="add_payment_type")
 ]
