@@ -77,7 +77,7 @@ def add_product(request):
 
         if form.is_valid():
             form.save(commit=True)
-            return index(request)
+            # return index(request)
         else:
             print(form.errors)
     return render(request, 'initial_site/add_product.html', {'form': form})
