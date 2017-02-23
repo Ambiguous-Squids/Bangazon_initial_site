@@ -77,7 +77,7 @@ def add_product(request):
 
         if form.is_valid():
             form.save(commit=True)
-            # return index(request)
+            return HttpResponseRedirect(redirect_to='/success')
         else:
             print(form.errors)
     return render(request, 'initial_site/add_product.html', {'form': form})
@@ -90,7 +90,7 @@ def add_payment_type(request):
 
         if form.is_valid():
             form.save(commit=True)
-            # return index(request)
+            return HttpResponseRedirect(redirect_to='/success')
         else:
             print(form.errors)
     return render(request, 'initial_site/add_payment_type.html', {'form': form})
