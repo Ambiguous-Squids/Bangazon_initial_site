@@ -1,5 +1,6 @@
 from django import forms
-from initial_site.models import Product
+from initial_site.models import Product, PaymentType
+
 
 class AddProductForm(forms.ModelForm):
     # customer = forms.ForeignKey(widget=forms.HiddenInput())
@@ -25,6 +26,6 @@ class AddPaymentTypeForm(forms.ModelForm):
 
 
     class Meta:
-        model = Product
+        model = PaymentType
         fields = ('customer','payment_type_name', 'first_name', 'last_name', 'account', 'expiration_date', 'ccv')
 
