@@ -8,7 +8,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 
 from . import models
 from .models import User
-from initial_site.forms import AddProductForm
+from initial_site.forms import AddProductForm, AddPaymentTypeForm
 # class views
 
 class IndexView(TemplateView):
@@ -81,3 +81,16 @@ def add_product(request):
         else:
             print(form.errors)
     return render(request, 'initial_site/add_product.html', {'form': form})
+
+def add_payment_type(request):
+    form = AddPaymentTypeForm()
+
+    if request.method == 'POST':
+        form = AddPaymentTypeForm(request.POST)
+
+        if form.is_valid():
+            form.save(commit=True)
+            # return index(request)
+        else:
+            print(form.errors)
+    return render(request, 'initial_site/add_payment_type.html', {'form': form})

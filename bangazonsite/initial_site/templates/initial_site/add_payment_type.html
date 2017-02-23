@@ -1,0 +1,15 @@
+<h1>Add a Payment Type</h1> <div>
+    <form id="add_payment_type_form" method="post" action="/add_payment_type/">
+        {% csrf_token %}
+        {% for hidden in form.hidden_fields %}
+            {{ hidden }}
+        {% endfor %}
+        {% for field in form.visible_fields %} <br>
+            {{ field.errors }}
+            {{ field.help_text }}
+            {{ field }}
+        {% endfor %}
+        </br>
+        <input type="submit" name="submit" value="Add Payment Type" />
+    </form>
+</div>
