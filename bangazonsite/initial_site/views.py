@@ -8,7 +8,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 
 from . import models
 from .models import User
-
+from initial_site.forms import AddProductForm
 # class views
 
 class IndexView(TemplateView):
@@ -22,10 +22,10 @@ class LoginSuccess(LoginRequiredMixin, TemplateView):
 class Register(TemplateView):
     template_name = 'initial_site/register.html'
 
-    
+
 class productDetailView(DetailView):
     model = models.Product
-    
+
 # function views
 
 
@@ -69,4 +69,15 @@ def logout_user(request):
     logout(request)
     return HttpResponseRedirect(redirect_to='/')
 
+def add_product(request):
+    form = AddProductForm()
 
+    if request.method == 'POST':
+        form = AddProductForm(request.POST)
+
+        if form.is_valid():
+            form.save(commit=True)
+            return index(request)
+        else:
+            print(form.errors)
+    return render(request, 'initial_site/add_product.html', {'form': form})
