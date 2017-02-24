@@ -44,37 +44,6 @@ def get_products_of_type(request, pk):
     })
 
 
-def register_user(request):
-    data = request.POST
-    user = User.objects.create_user(
-        username = data['username'],
-        password = data['password'],
-        email = data['email'],
-        first_name = data['first_name'],
-        last_name = data['last_name']
-    )
-    return login_user(request)
-
-
-def login_user(request):
-    data = request.POST
-    username = data['username']
-    password = data['password']
-    user = authenticate(
-        username = username,
-        password = password
-    )
-    if user is not None:
-        login(request = request, user = user)
-    else:
-        return HttpResponseRedirect(redirect_to='/')
-    return HttpResponseRedirect(redirect_to='/success')
-
-
-def logout_user(request):
-    logout(request)
-    return HttpResponseRedirect(redirect_to='/')
-
 def add_product(request):
     form = AddProductForm()
 
@@ -87,6 +56,7 @@ def add_product(request):
         else:
             print(form.errors)
     return render(request, 'initial_site/add_product.html', {'form': form})
+
 
 def add_payment_type(request):
     form = AddPaymentTypeForm()

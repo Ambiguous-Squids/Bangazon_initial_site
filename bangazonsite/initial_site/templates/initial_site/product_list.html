@@ -1,8 +1,14 @@
-<h1>Products</h1>
-	<ol>
-		{% for product in product_list %}
-		<li>
-			<a href="{{ product.get_absolute_url }}">{{product.name}}</a>
-		</li>
-		{% endfor %}
-	</ol>
+{% extends "base_generic.html" %}
+{% block content %}
+<h1>{{product.name}}</h1>
+<ul>
+	  <li>Dept: {{ product.product_type }} - ${{ product.price }} - Quantity: {{ product.quantity }} - Creator: {{ product.customer }}
+	  <br />
+	  </li>
+	  <br />
+</ul>
+<h3>Description: {{ product.description }}</h3><br />
+{% if user.is_authenticated %}
+      <button class="btn-danger">Add Product to Shopping Cart</button>
+{% endif %}
+{% endblock %}
