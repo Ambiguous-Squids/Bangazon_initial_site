@@ -1,14 +1,14 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
+from django.http import HttpResponse, HttpResponseRedirect
 from django.views.generic.list import ListView
 from django.views.generic.base import TemplateView
 from django.views.generic.detail import DetailView
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.auth import login, logout, authenticate
-from django.http import HttpResponse, HttpResponseRedirect
+
 
 from . import models
 from .models import User
-from initial_site.forms import AddProductForm, AddPaymentTypeForm
+from .forms import AddProductForm, AddPaymentTypeForm
 
 # class views
 
@@ -16,6 +16,20 @@ class productDetailView(DetailView):
     model = models.Product
 
 # function views
+
+def index(request):
+    """
+    View function for the splash page of site.
+    @asimonia
+    """
+    # Generate counts of some of the main objects
+    num_product_types = models.ProductType.objects.all().count()
+    num_products = models.Product.objects.all().count()
+
+    return render(request, 'index.html', {
+        'num_products':num_products,
+        'num_product_types':num_product_types
+    })
 
 def get_product_types(request):
     departments = models.ProductType.objects.order_by('label')
