@@ -1,0 +1,235 @@
+[{
+	"model": "initial_site.producttype",
+	"pk": 1,
+	"fields": {
+		"label": "Sports"
+	}
+}, {
+	"model": "initial_site.producttype",
+	"pk": 2,
+	"fields": {
+		"label": "Toys"
+	}
+}, {
+	"model": "initial_site.producttype",
+	"pk": 3,
+	"fields": {
+		"label": "Music"
+	}
+}, {
+	"model": "initial_site.paymenttype",
+	"pk": 1,
+	"fields": {
+		"customer": 1,
+		"payment_type_name": "VISA",
+		"first_name": "Bill",
+		"last_name": "Simpson",
+		"account": "1234432112344321",
+		"expiration_date": "2020-10-10",
+		"ccv": "344"
+	}
+}, {
+	"model": "initial_site.paymenttype",
+	"pk": 2,
+	"fields": {
+		"customer": 2,
+		"payment_type_name": "MasterCard",
+		"first_name": "Bovine",
+		"last_name": "Jovi",
+		"account": "0987789009877890",
+		"expiration_date": "2021-11-11",
+		"ccv": "312"
+	}
+}, {
+	"model": "initial_site.paymenttype",
+	"pk": 3,
+	"fields": {
+		"customer": 3,
+		"payment_type_name": "American Express",
+		"first_name": "Matthew",
+		"last_name": "McCord",
+		"account": "5678876556788765",
+		"expiration_date": "2090-09-09",
+		"ccv": "786"
+	}
+}, {
+	"model": "initial_site.product",
+	"pk": 1,
+	"fields": {
+		"customer": 1,
+		"product_type": 1,
+		"name": "Baseball",
+		"description": "A hand-stitched baseball.",
+		"price": "4.99",
+		"quantity": 50
+	}
+}, {
+	"model": "initial_site.product",
+	"pk": 2,
+	"fields": {
+		"customer": 1,
+		"product_type": 2,
+		"name": "U.F.O.",
+		"description": "Straight out of Science Fiction; A gleaming, silver flying saucer.",
+		"price": "39.99",
+		"quantity": 69
+	}
+}, {
+	"model": "initial_site.product",
+	"pk": 3,
+	"fields": {
+		"customer": 2,
+		"product_type": 3,
+		"name": "Epiphone Dolphin",
+		"description": "This guitar really squeals.",
+		"price": "999.99",
+		"quantity": 30
+	}
+}, {
+	"model": "initial_site.product",
+	"pk": 4,
+	"fields": {
+		"customer": 2,
+		"product_type": 1,
+		"name": "Hockey Stick",
+		"description": "48 inches tall. Made of Balsa wood.",
+		"price": "25.99",
+		"quantity": 200
+	}
+}, {
+	"model": "initial_site.product",
+	"pk": 5,
+	"fields": {
+		"customer": 3,
+		"product_type": 2,
+		"name": "Lego Trump",
+		"description": "A replica of our fearless leader, in LEGO form.",
+		"price": "666.99",
+		"quantity": 999
+	}
+}, {
+	"model": "initial_site.product",
+	"pk": 6,
+	"fields": {
+		"customer": 3,
+		"product_type": 3,
+		"name": "Fender Bonesaw",
+		"description": "16 string Bass guitar that'll really give you the cutting edge.",
+		"price": "444.69",
+		"quantity": 88
+	}
+}, {
+	"model": "initial_site.order",
+	"pk": 1,
+	"fields": {
+		"active": true,
+		"customer": 1,
+		"payment_type": 1,
+		"products": [4, 6]
+	}
+}, {
+	"model": "initial_site.order",
+	"pk": 2,
+	"fields": {
+		"active": true,
+		"customer": 2,
+		"payment_type": 2,
+		"products": [1, 2]
+	}
+}, {
+	"model": "initial_site.order",
+	"pk": 3,
+	"fields": {
+		"active": true,
+		"customer": 3,
+		"payment_type": 3,
+		"products": [2, 4]
+	}
+}, {
+	"model": "auth.user",
+	"pk": 1,
+	"fields": {
+		"password": "pbkdf2_sha256$30000$yk5F1qVT4dRi$J9usVbGSvxUvvvQLMhcK19wmctuQl3pnNc8oJDGCciA=",
+		"last_login": "2017-02-22T16:30:41Z",
+		"is_superuser": true,
+		"username": "matthew",
+		"first_name": "Matthew",
+		"last_name": "McCord",
+		"email": "me@me.coolstorybro",
+		"is_staff": true,
+		"is_active": true,
+		"date_joined": "2017-02-22T16:30:38Z",
+		"groups": [],
+		"user_permissions": []
+	}
+}, {
+	"model": "auth.user",
+	"pk": 2,
+	"fields": {
+		"password": "pbkdf2_sha256$30000$7iXymbzZzkBh$fyPaT55yEvPPidiO6Ttkw0X8nMaChw7GHoc4PO+Havg=",
+		"last_login": null,
+		"is_superuser": false,
+		"username": "Bovine_Jovi",
+		"first_name": "Bovine",
+		"last_name": "Jovi",
+		"email": "cowboy@sixguninmyhand.cool",
+		"is_staff": false,
+		"is_active": true,
+		"date_joined": "2017-02-22T16:41:13Z",
+		"groups": [],
+		"user_permissions": []
+	}
+}, {
+	"model": "auth.user",
+	"pk": 3,
+	"fields": {
+		"password": "pbkdf2_sha256$30000$ZsazSrIbKI1s$6gQqQpzovGJfGx2MlwNeop8+MvN4QySE+8LoOIvzCtc=",
+		"last_login": null,
+		"is_superuser": false,
+		"username": "Bill_Simpson",
+		"first_name": "Bill",
+		"last_name": "Simpson",
+		"email": "bill@simpson.bingoooo",
+		"is_staff": false,
+		"is_active": true,
+		"date_joined": "2017-02-22T16:42:16Z",
+		"groups": [],
+		"user_permissions": []
+	}
+}, {
+	"model": "initial_site.customer",
+	"pk": 1,
+	"fields": {
+		"user": 3,
+		"account_created": "2017-02-22T16:44:26.635Z",
+		"address_1": "123 evergreen terrace",
+		"address_2": "",
+		"city": "springfield",
+		"state": "OH",
+		"zip_code": "45678"
+	}
+}, {
+	"model": "initial_site.customer",
+	"pk": 2,
+	"fields": {
+		"user": 2,
+		"account_created": "2017-02-22T16:44:53.393Z",
+		"address_1": "666 Wild West avenue",
+		"address_2": "",
+		"city": "Far East Man",
+		"state": "TN",
+		"zip_code": "55322"
+	}
+}, {
+	"model": "initial_site.customer",
+	"pk": 3,
+	"fields": {
+		"user": 1,
+		"account_created": "2017-02-22T16:45:29.870Z",
+		"address_1": "123 radical duder way",
+		"address_2": "b5",
+		"city": "the internet",
+		"state": "OO",
+		"zip_code": "33464"
+	}
+}]

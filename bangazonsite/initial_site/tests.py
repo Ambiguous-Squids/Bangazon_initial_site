@@ -1,21 +1,46 @@
 from django.test import TestCase
+from django.test import Client
+from django.urls import reverse
+from django.test.utils import setup_test_environment
 from initial_site import models
-from django.core.urlresolvers import reverse
 
+'''
+Unit Tests for the views
+'''
 
-class ProductDetailsViewTest(TestCase):
+setup_test_environment()
 
-    def test_view_product_detail(self):
+class ProductViewTests(TestCase):
 
-        walkman = models.Product('Walkman', {'product_id':1, 'product_type':'electronics'})
-        walkman.save()
+    '''
+    This class will test the views relating to Products
+    '''
 
-        # resp = self.client.get(reverse('product'), 'products/electronics/1')
-        resp = self.client.get(reverse('product'), kwargs={'poll_id':1, 'product_type':'electronics'})
+    def test_can_list_all_products(self):
+        """
+        Testing if we can list all products on a view
+        """
+        ball = models.Product("1", "1", 2, "Baseball", 33.33, 444)
+        ball.save()
         
-        self.assertEqual(resp.status_code, 200)
-        self.assertEqual(resp.context['product'].product_id, 1)
-        self.assertEqual(resp.context['product'].product_type, 'electronics')        
+        client = Client()
+        response = client.get(reverse('initial_site:products'))
+        
+        self.assertQuerysetEqual(response.context['object_list'], ['<Product: Baseball>'])
 
-        # Non-existent products throw a 404.
-        self.assertEqual(resp.status_code, 404)
+
+class CustomerTest(TestCase):
+	def test_is_a_customer(self):
+
+		david = models.Customer("123 Front St", "456 Back St","Smyrna", "Tennssee", "37167")
+		self.assertIsInstance(david, models.Customer)
+
+
+class TestAddProduct(TestCase):
+    """
+    Author:
+        @nchemsak
+    """
+    def test_add_a_product(self):
+        uselessMachine = models.Product('UselessMachine', 39.99, 5)
+        self.assertIsInstance(uselessMachine, models.Product)
