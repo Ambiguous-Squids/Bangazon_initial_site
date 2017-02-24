@@ -42,7 +42,7 @@ def get_products_of_type(request, pk):
     products = models.Product.objects.filter(product_type=pk)
     return render(request, 'initial_site/product_list.html', {
         'product_list': products,
-        'product_type': product_type
+        'product_type': product_type[0]
     })
 
 
