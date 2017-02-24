@@ -1,3 +1,5 @@
+{% extends "base_generic.html" %}
+{% block content %}
 <h1>Add a Product</h1> <div>
     <form id="add_product_form" method="post" action="/add_product/">
         {% csrf_token %}
@@ -12,3 +14,4 @@
         <input type="submit" name="submit" value="Add Product" />
     </form>
 </div>
+{% endblock %}

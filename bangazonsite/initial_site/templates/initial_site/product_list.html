@@ -1,3 +1,5 @@
+{% extends "base_generic.html" %}
+{% block content %}
 <h1>Products</h1>
 	{% for department in departments_list %}
 	<ol>
@@ -11,3 +13,4 @@
 		{% endfor %}
 	</ol>
 	{% endfor %}
+{% endblock %}
