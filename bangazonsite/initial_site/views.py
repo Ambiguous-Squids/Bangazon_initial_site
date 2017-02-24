@@ -4,6 +4,7 @@ from django.views.generic.list import ListView
 from django.views.generic.base import TemplateView
 from django.views.generic.detail import DetailView
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
 
 
 from . import models
@@ -45,7 +46,7 @@ def get_products_of_type(request, pk):
         'product_type': product_type[0]
     })
 
-
+@login_required
 def add_product(request):
     form = AddProductForm()
 
@@ -59,7 +60,7 @@ def add_product(request):
             print(form.errors)
     return render(request, 'initial_site/add_product.html', {'form': form})
 
-
+@login_required
 def add_payment_type(request):
     form = AddPaymentTypeForm()
 
