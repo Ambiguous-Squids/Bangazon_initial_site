@@ -8,8 +8,7 @@ from django.views.generic import RedirectView
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^bangazon/', include('initial_site.urls')),
-    url(r'^$', RedirectView.as_view(url='/bangazon/', permanent=True)),
+    url(r'^', include('initial_site.urls'))
 ]
 
 #Add Django site authentication urls (for login, logout, password management)

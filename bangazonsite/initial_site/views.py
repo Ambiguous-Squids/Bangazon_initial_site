@@ -32,11 +32,10 @@ def index(request):
     num_product_types = models.ProductType.objects.all().count()
     num_products = models.Product.objects.all().count()
 
-    return render(
-        request,
-        'index.html',
-        context={'num_products':num_products, 'num_product_types':num_product_types},
-    )
+    return render(request, 'index.html', {
+        'num_products':num_products,
+        'num_product_types':num_product_types
+    })
 
 
 
