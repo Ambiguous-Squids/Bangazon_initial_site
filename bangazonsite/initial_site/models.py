@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User
 from django.db import models
+from django.urls import reverse
 
 class Customer(models.Model):
     """
@@ -91,6 +92,9 @@ class Product(models.Model):
 
     class Meta:
         verbose_name_plural = 'Products'
+
+    def get_absolute_url(self):
+        return reverse('initial_site:product_detail', args=[str(self.id)])
 
     def __str__(self):
         return str(self.name)
