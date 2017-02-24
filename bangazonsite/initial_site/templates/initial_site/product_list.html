@@ -5,9 +5,10 @@
 		{% for product in object_list %}
 		  {% if product.product_type.label == department.label %}
 		  	<li>
-		  		<a href="/products/{{ product.id }}/">{{ product.name }}</a>
+		  		<a href="{{ product.get_absolute_url }}">{{ product.name }}</a>
 		  	</li>
 		  {% endif %}
 		{% endfor %}
 	</ol>
 	{% endfor %}
+
