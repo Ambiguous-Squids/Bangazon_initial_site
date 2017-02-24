@@ -1,0 +1,9 @@
+<h1>Product Types</h1>
+	{% for department in departments_list %}
+	<ol>
+		<li>
+	 		<a href="{{ department.get_absolute_url }}">{{ department.label }}</a>
+		</li>
+	</ol>
+	{% endfor %}
+

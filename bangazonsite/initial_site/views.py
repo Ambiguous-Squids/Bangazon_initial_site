@@ -9,6 +9,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from . import models
 from .models import User
 from initial_site.forms import AddProductForm, AddPaymentTypeForm
+
 # class views
 
 class IndexView(TemplateView):
@@ -28,13 +29,18 @@ class productDetailView(DetailView):
 
 # function views
 
-
-def get_products(request):
-    products = models.Product.objects.order_by('product_type')
+def get_product_types(request):
     departments = models.ProductType.objects.order_by('label')
-    return render(request, 'initial_site/product_list.html', {
-        'object_list': products,
+    return render(request, 'initial_site/product_type_list.html', {
         'departments_list': departments
+    })
+
+def get_products_of_type(request, pk):
+    product_type = models.ProductType.objects.filter(id=pk)
+    products = models.Product.objects.filter(product_type=pk)
+    return render(request, 'initial_site/product_list.html', {
+        'product_list': products,
+        'product_type': product_type
     })
 
 

@@ -5,4 +5,7 @@
 	  </li>
 	  <br />
 </ul>
-<h3>Description: {{ product.description }}</h3>
+<h3>Description: {{ product.description }}</h3><br />
+{% if user.is_authenticated %}
+      <button class="btn-danger">Add Product to Shopping Cart</button>
+{% endif %}

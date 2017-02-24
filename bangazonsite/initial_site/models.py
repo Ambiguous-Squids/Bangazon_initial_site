@@ -36,6 +36,9 @@ class ProductType(models.Model):
     class Meta:
         verbose_name_plural = 'ProductTypes'
 
+    def get_absolute_url(self):
+        return reverse('initial_site:products_of_type', args=[str(self.id)])
+
     def __str__(self):
         return str(self.label)
 
