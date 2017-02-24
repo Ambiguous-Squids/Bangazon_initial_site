@@ -12,18 +12,6 @@ from initial_site.forms import AddProductForm, AddPaymentTypeForm
 
 # class views
 
-class IndexView(TemplateView):
-    template_name = 'initial_site/login.html'
-
-
-class LoginSuccess(LoginRequiredMixin, TemplateView):
-    template_name = 'initial_site/home.html'
-
-
-class Register(TemplateView):
-    template_name = 'initial_site/register.html'
-
-
 class productDetailView(DetailView):
     model = models.Product
 
