@@ -13,6 +13,7 @@ class AddProductForm(forms.ModelForm):
 
 class AddPaymentTypeForm(forms.ModelForm):
 
+    # customer = forms.ForeignKey(Customer)
     payment_type_name = forms.CharField(max_length=16,help_text="Please enter the type of card you would like to add.")
     first_name = forms.CharField(max_length=50,help_text="Please your first name")
     last_name = forms.CharField(max_length=50,help_text="Please your last name")
