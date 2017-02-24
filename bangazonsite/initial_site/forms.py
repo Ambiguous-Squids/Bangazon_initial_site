@@ -3,12 +3,9 @@ from initial_site.models import Product, PaymentType
 
 
 class AddProductForm(forms.ModelForm):
-    # customer = forms.ForeignKey(widget=forms.HiddenInput())
     name = forms.CharField(max_length=50, help_text="Please enter the name of your product.")
-    # product_type = forms.ForeignKey(ProductType, on_delete=models.CASCADE)
     description = forms.CharField(max_length=4000, help_text="Please enter the description of your product.")
     price = forms.DecimalField(max_digits=15, decimal_places=2, help_text="Please enter the price of your product.")
-    # quantity = forms.IntegerField(default=1, help_text="Please enter the quantity of your product.")
 
     class Meta:
         model = Product
@@ -16,7 +13,6 @@ class AddProductForm(forms.ModelForm):
 
 class AddPaymentTypeForm(forms.ModelForm):
 
-    # customer = forms.ForeignKey(Customer)
     payment_type_name = forms.CharField(max_length=16,help_text="Please enter the type of card you would like to add.")
     first_name = forms.CharField(max_length=50,help_text="Please your first name")
     last_name = forms.CharField(max_length=50,help_text="Please your last name")
