@@ -47,6 +47,7 @@ def get_products_of_type(request, pk):
     })
 
 @login_required
+
 def get_payment_type(request):
     new_cust = models.Customer.objects.filter(user = request.user)
     payments = models.PaymentType.objects.filter(customer = new_cust)
@@ -54,6 +55,7 @@ def get_payment_type(request):
         'payment_list': payments,
         'user': request.user
     })
+
 
 def add_product(request):
     form = AddProductForm()
@@ -68,7 +70,7 @@ def add_product(request):
             print(form.errors)
     return render(request, 'initial_site/add_product.html', {'form': form})
 
-
+@login_required
 def add_payment_type(request):
     form = AddPaymentTypeForm()
 
