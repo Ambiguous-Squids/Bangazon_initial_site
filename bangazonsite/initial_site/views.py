@@ -1,32 +1,42 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
+from django.http import HttpResponse, HttpResponseRedirect
 from django.views.generic.list import ListView
 from django.views.generic.base import TemplateView
 from django.views.generic.detail import DetailView
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.auth import login, logout, authenticate
-from django.http import HttpResponse, HttpResponseRedirect
+
 
 from . import models
 from .models import User
-from initial_site.forms import AddProductForm, AddPaymentTypeForm
+from .forms import AddProductForm, AddPaymentTypeForm
+
+
 # class views
-
-class IndexView(TemplateView):
-    template_name = 'initial_site/login.html'
-
-
-class LoginSuccess(LoginRequiredMixin, TemplateView):
-    template_name = 'initial_site/home.html'
-
-
-class Register(TemplateView):
-    template_name = 'initial_site/register.html'
 
 
 class productDetailView(DetailView):
     model = models.Product
 
+
+
+
+
 # function views
+
+def index(request):
+    """
+    View function for the splash page of site.
+    @asimonia
+    """
+    # Generate counts of some of the main objects
+    num_product_types = models.ProductType.objects.all().count()
+    num_products = models.Product.objects.all().count()
+
+    return render(request, 'index.html', {
+        'num_products':num_products,
+        'num_product_types':num_product_types
+    })
+
 
 
 def get_products(request):
@@ -37,37 +47,6 @@ def get_products(request):
         'departments_list': departments
     })
 
-
-def register_user(request):
-    data = request.POST
-    user = User.objects.create_user(
-        username = data['username'],
-        password = data['password'],
-        email = data['email'],
-        first_name = data['first_name'],
-        last_name = data['last_name']
-    )
-    return login_user(request)
-
-
-def login_user(request):
-    data = request.POST
-    username = data['username']
-    password = data['password']
-    user = authenticate(
-        username = username,
-        password = password
-    )
-    if user is not None:
-        login(request = request, user = user)
-    else:
-        return HttpResponseRedirect(redirect_to='/')
-    return HttpResponseRedirect(redirect_to='/success')
-
-
-def logout_user(request):
-    logout(request)
-    return HttpResponseRedirect(redirect_to='/')
 
 def add_product(request):
     form = AddProductForm()
@@ -81,6 +60,7 @@ def add_product(request):
         else:
             print(form.errors)
     return render(request, 'initial_site/add_product.html', {'form': form})
+
 
 def add_payment_type(request):
     form = AddPaymentTypeForm()
