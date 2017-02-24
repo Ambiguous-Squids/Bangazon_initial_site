@@ -1,17 +1,14 @@
 {% extends "base_generic.html" %}
 {% block content %}
-<h1>Products</h1>
-	{% for department in departments_list %}
-	<ol>
-			<h2>{{ department.label }} </h2>
-		{% for product in object_list %}
-		  {% if product.product_type.label == department.label %}
-		  	<li>
-		  		<a href="{{ product.get_absolute_url }}">{{ product.name }}</a>
-		  	</li>
-		  {% endif %}
+	
+	<h1>{{ product_type }}</h1>
+	
+		<ul>
+		{% for product in product_list %}
+			<li>
+				<a href="{{ product.get_absolute_url }}">{{ product.name }}</a>
+			</li>
 		{% endfor %}
-	</ol>
-	{% endfor %}
-{% endblock %}
+		</ul>
 
+{% endblock %}
