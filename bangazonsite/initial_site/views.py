@@ -79,9 +79,9 @@ def add_payment_type(request):
 
         if form.is_valid():
             form.save(commit=True)
+            next = request.POST.get('next', '/')
 
-
-            return HttpResponseRedirect(redirect_to='/list_payment_type')
+            return HttpResponseRedirect(next)
         else:
             print(form.errors)
     return render(request, 'initial_site/add_payment_type.html', {'form': form})

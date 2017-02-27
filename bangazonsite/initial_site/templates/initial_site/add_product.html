@@ -1,6 +1,11 @@
 {% extends "base_generic.html" %}
 {% block content %}
-<h1>Add a Product</h1> <div>
+<h1>Add a Product</h1> 
+
+<!-- REMOVE AFTER TESTING WE DONT REALLY WANT THIS HERE -->
+<a href="{% url 'add_payment_type' %}?next={{request.path|urlencode}}"> TEST REDIRECT FOR PAYMENT </a>
+
+<div>
     <form id="add_product_form" method="post" action="/add_product/">
         {% csrf_token %}
         {% for hidden in form.hidden_fields %}
