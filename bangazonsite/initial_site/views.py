@@ -1,3 +1,4 @@
+from django import forms
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.views.generic.list import ListView
@@ -9,7 +10,7 @@ from django.contrib.auth.decorators import login_required
 
 from . import models
 from .models import User
-from .forms import AddProductForm, AddPaymentTypeForm
+from .forms import AddProductForm, AddPaymentTypeForm, UserForm, UserProfileForm
 
 # class views
 
@@ -17,6 +18,42 @@ class productDetailView(DetailView):
     model = models.Product
 
 # function views
+
+def register(request):
+    """
+    View function to register a new user/customer.
+    @asimonia
+    """
+    registered = False
+
+    if request.method == 'POST':
+        user_form = UserForm(data=request.POST)
+        profile_form = UserProfileForm(data=request.POST)
+
+        if user_form.is_valid() and profile_form.is_valid():
+            user = user_form.save()
+            user.set_password(user.password)
+            user.save()
+
+            profile = profile_form.save(commit=False)
+            profile.user = user
+
+            profile.save()
+
+            registered = True
+        else:
+            # Invalid form or forms.  Print to terminal
+            print(user_form.errors, profile_form.errors)
+    else:
+        user_form = UserForm()
+        profile_form = UserProfileForm()
+        
+
+    return render(request, 'registration/register.html',
+            {'user_form': user_form,
+             'profile_form': profile_form,
+             'registered': registered})
+
 
 def index(request):
     """

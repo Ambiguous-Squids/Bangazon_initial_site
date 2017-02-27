@@ -15,6 +15,11 @@ urlpatterns += [
 
 # Payment Type Creation
 urlpatterns += [
-    url(r'^add_payment_type/$', views.add_payment_type, name="add_payment_type"),
+    url(r'^add_payment_type/$', views.add_payment_type, name="add_payment_type")
+]
+
+
+urlpatterns += [
+    url(r'^register/$', views.register, name='register'),
     url(r'^list_payment_type/$', views.get_payment_type, name="get_payment_type")
 ]
