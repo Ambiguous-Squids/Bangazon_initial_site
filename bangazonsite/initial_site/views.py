@@ -116,7 +116,9 @@ def add_payment_type(request):
         form = AddPaymentTypeForm(request.POST)
 
         if form.is_valid():
-            form.save(commit=True)
+            post = form.save(commit=False)
+            post.customer_id = request.user.id
+            post.save()
             # Setting next so the django reroutes user to previous page
             next = request.POST.get('next', '/')
             # Redirect to previous page
