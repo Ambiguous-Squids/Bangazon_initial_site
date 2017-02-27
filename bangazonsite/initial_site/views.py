@@ -17,6 +17,9 @@ from .forms import AddProductForm, AddPaymentTypeForm, UserForm, UserProfileForm
 class productDetailView(DetailView):
     model = models.Product
 
+class success(TemplateView):
+    template = 'success.html'
+
 # function views
 
 def register(request):
@@ -127,3 +130,33 @@ def add_payment_type(request):
             print(form.errors)
     return render(request, 'initial_site/add_payment_type.html', {'form': form})
 
+
+def add_product_to_order(request):
+    pass
+
+def order_detail(request):
+    pk = models.Order.objects.filter(customer = request.user.id, active = 1)
+    active_order = models.Order.objects.filter(pk = pk)[0]
+    products = active_order.products.all()
+    payment_types = models.PaymentType.objects.filter(customer = request.user.id)
+    total = 0
+
+    for product in products:
+        total += product.price
+
+    if request.method == 'POST':
+        payment = models.PaymentType.objects.filter(pk = request.POST['select_payment'])[0]
+        active_order.payment_type = payment
+        active_order.active = 0
+        active_order.save()
+        return render(request, 'initial_site/success.html', {'confirm_order': request.POST})
+        # return HttpResponseRedirect(redirect_to='/success')
+
+    else:
+        return render(request, 'initial_site/order_detail.html', {
+            'active_order': active_order,
+            'products': products,
+            'total': total,
+            'payment_types': payment_types,
+            'pk': pk
+            })
