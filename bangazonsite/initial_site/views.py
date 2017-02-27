@@ -70,6 +70,16 @@ def get_products_of_type(request, pk):
     })
 
 @login_required
+
+def get_payment_type(request):
+    new_cust = models.Customer.objects.filter(user = request.user)
+    payments = models.PaymentType.objects.filter(customer = new_cust)
+    return render(request, 'initial_site/payment_list.html',{
+        'payment_list': payments,
+        'user': request.user
+    })
+
+
 def add_product(request):
     form = AddProductForm()
 
@@ -92,7 +102,9 @@ def add_payment_type(request):
 
         if form.is_valid():
             form.save(commit=True)
-            return HttpResponseRedirect(redirect_to='/')
+
+
+            return HttpResponseRedirect(redirect_to='/list_payment_type')
         else:
             print(form.errors)
     return render(request, 'initial_site/add_payment_type.html', {'form': form})

@@ -1,0 +1,11 @@
+<h1>Payment Types</h1>
+	<ol>
+		
+			<h2>{{ user.first_name }} {{user.last_name}} </h2>
+		
+			{% for payment in payment_list %}
+		  	<li>
+		  		{{ payment.payment_type_name }}
+		  	</li>
+		{% endfor %}
+	</ol>

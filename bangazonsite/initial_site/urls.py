@@ -21,4 +21,5 @@ urlpatterns += [
 
 urlpatterns += [
     url(r'^register/$', views.register, name='register'),
+    url(r'^list_payment_type/$', views.get_payment_type, name="get_payment_type")
 ]
