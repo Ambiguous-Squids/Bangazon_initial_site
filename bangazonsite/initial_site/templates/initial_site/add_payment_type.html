@@ -1,6 +1,7 @@
 {% extends "base_generic.html" %}
 {% block content %}
 <h1>Add a Payment Type</h1> <div>
+
     <form id="add_payment_type_form" method="post" action="/add_payment_type/">
         {% csrf_token %}
         {% for hidden in form.hidden_fields %}
@@ -12,6 +13,8 @@
             {{ field }}
         {% endfor %}
         </br>
+        <!-- Hidden Form requests url route from previous page -->
+        <input type="hidden" name="next" value="{{ request.GET.next }}">
         <input type="submit" name="submit" value="Add Payment Type" />
     </form>
 </div>
