@@ -10,7 +10,7 @@ class AddProductForm(forms.ModelForm):
 
     class Meta:
         model = Product
-        fields = ('customer', 'name', 'product_type', 'description', 'price', 'quantity')
+        fields = ('name', 'product_type', 'description', 'price', 'quantity')
 
 class AddPaymentTypeForm(forms.ModelForm):
     payment_type_name = forms.CharField(max_length=16,help_text="Please enter the type of card you would like to add.")
@@ -23,7 +23,7 @@ class AddPaymentTypeForm(forms.ModelForm):
 
     class Meta:
         model = PaymentType
-        fields = ('customer','payment_type_name', 'first_name', 'last_name', 'account', 'expiration_date', 'ccv')
+        fields = ('payment_type_name', 'first_name', 'last_name', 'account', 'expiration_date', 'ccv')
 
 class UserForm(forms.ModelForm):
     """

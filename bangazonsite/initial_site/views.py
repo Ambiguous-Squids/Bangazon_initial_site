@@ -47,7 +47,7 @@ def register(request):
     else:
         user_form = UserForm()
         profile_form = UserProfileForm()
-        
+
 
     return render(request, 'registration/register.html',
             {'user_form': user_form,
@@ -123,3 +123,4 @@ def add_payment_type(request):
         else:
             print(form.errors)
     return render(request, 'initial_site/add_payment_type.html', {'form': form})
+
