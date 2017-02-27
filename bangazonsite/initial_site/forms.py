@@ -1,5 +1,5 @@
 from django import forms
-from initial_site.models import Product, PaymentType
+from initial_site.models import Product, PaymentType, Customer
 from django.contrib.auth.models import User
 
 
@@ -35,3 +35,14 @@ class UserForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ('username', 'email', 'password')
+
+
+class UserProfileForm(forms.ModelForm):
+    """
+    Form to complete a customer profile.
+    @asimonia
+    """
+
+    class Meta:
+        model = Customer
+        fields = ('address_1', 'address_2', 'city', 'state', 'zip_code')

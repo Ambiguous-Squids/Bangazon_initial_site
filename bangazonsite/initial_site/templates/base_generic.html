@@ -28,13 +28,14 @@
               <ul class="nav navbar-nav navbar-right">
                 <li><a>Welcome {{ user.get_username }}!</a></li>
               </ul>
-              <li><a href="{% url 'add_product' %}">Sell Products</a></li>
+               <li><a href="{% url 'add_product' %}">Sell Products</a></li>
                <li><a href="{% url 'add_payment_type' %}">Manage Payment Types</a></li>
-               <li><a href="">Proceed to Checkout</a></li>
+               <li><a href="">Cart</a></li>
                <li><a href="{% url 'logout'%}?next={{request.path}}">Logout</a></li>   
              {% else %}
                <li><a href="{% url 'login'%}?next={{request.path}}">Login</a></li>   
              {% endif %}
+          </ul>
         </div>
       </nav>
       {% endblock %}
