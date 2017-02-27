@@ -26,6 +26,7 @@ urlpatterns += [
 
 urlpatterns += [
     url(r'^order/', views.order_detail, name='order'),
+    url(r'^add_product_to_order/(?P<pk>\d+)/', views.add_product_to_order, name='add_product_to_order'),
     url(r'^success/', views.success.as_view(), name='success')
 
 ]

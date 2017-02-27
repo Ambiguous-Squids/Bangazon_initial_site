@@ -131,12 +131,26 @@ def add_payment_type(request):
     return render(request, 'initial_site/add_payment_type.html', {'form': form})
 
 
-def add_product_to_order(request):
-    pass
+def add_product_to_order(request, pk):
+    product = models.Product.objects.get(id = pk)
 
+
+    try:
+        order_pk = models.Order.objects.get(customer = request.user.id, active = 1)
+        new_order = models.Order.objects.get(id = order_pk.id)
+    except:
+        customer = models.Customer.objects.get(user = request.user)
+        new_order = models.Order.objects.create(active = 1, customer = customer, payment_type = None)
+        new_order.save()
+
+    new_order.products.add(product)
+
+    return HttpResponseRedirect(redirect_to='/order')
+
+    
 def order_detail(request):
-    pk = models.Order.objects.filter(customer = request.user.id, active = 1)
-    active_order = models.Order.objects.filter(pk = pk)[0]
+    pk = models.Order.objects.get(customer = request.user.id, active = 1).id
+    active_order = models.Order.objects.get(id = pk)
     products = active_order.products.all()
     payment_types = models.PaymentType.objects.filter(customer = request.user.id)
     total = 0
@@ -145,12 +159,11 @@ def order_detail(request):
         total += product.price
 
     if request.method == 'POST':
-        payment = models.PaymentType.objects.filter(pk = request.POST['select_payment'])[0]
+        payment = models.PaymentType.objects.get(id = request.POST['select_payment'])
         active_order.payment_type = payment
         active_order.active = 0
         active_order.save()
         return render(request, 'initial_site/success.html', {'confirm_order': request.POST})
-        # return HttpResponseRedirect(redirect_to='/success')
 
     else:
         return render(request, 'initial_site/order_detail.html', {
