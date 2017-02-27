@@ -5,8 +5,10 @@ from django.contrib.auth.models import User
 
 class AddProductForm(forms.ModelForm):
     name = forms.CharField(max_length=50, help_text="Please enter the name of your product.")
+    # product_type = forms.ForeignKeyField(help_text="Please select a product type.")
     description = forms.CharField(max_length=4000, help_text="Please enter the description of your product.")
     price = forms.DecimalField(max_digits=15, decimal_places=2, help_text="Please enter the price of your product.")
+    quantity = forms.IntegerField(help_text="Please enter a quantity.")
 
     class Meta:
         model = Product
@@ -23,7 +25,7 @@ class AddPaymentTypeForm(forms.ModelForm):
 
     class Meta:
         model = PaymentType
-        fields = ('payment_type_name', 'first_name', 'last_name', 'account', 'expiration_date', 'ccv')
+        fields = ('customer', 'payment_type_name', 'first_name', 'last_name', 'account', 'expiration_date', 'ccv')
 
 class UserForm(forms.ModelForm):
     """
