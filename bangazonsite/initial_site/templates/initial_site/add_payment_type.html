@@ -13,6 +13,7 @@
             {{ field }}
         {% endfor %}
         </br>
+        <!-- Hidden Form requests url route from previous page -->
         <input type="hidden" name="next" value="{{ request.GET.next }}">
         <input type="submit" name="submit" value="Add Payment Type" />
     </form>
