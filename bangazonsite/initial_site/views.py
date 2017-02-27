@@ -50,7 +50,7 @@ def register(request):
     else:
         user_form = UserForm()
         profile_form = UserProfileForm()
-        
+
 
     return render(request, 'registration/register.html',
             {'user_form': user_form,
@@ -87,7 +87,6 @@ def get_products_of_type(request, pk):
     })
 
 @login_required
-
 def get_payment_type(request):
     new_cust = models.Customer.objects.filter(user = request.user)
     payments = models.PaymentType.objects.filter(customer = new_cust)
@@ -96,7 +95,7 @@ def get_payment_type(request):
         'user': request.user
     })
 
-
+@login_required
 def add_product(request):
     form = AddProductForm()
 
@@ -104,7 +103,9 @@ def add_product(request):
         form = AddProductForm(request.POST)
 
         if form.is_valid():
-            form.save(commit=True)
+            post = form.save(commit=False)
+            post.customer_id = request.user.id
+            post.save()
             return HttpResponseRedirect(redirect_to='/')
         else:
             print(form.errors)
@@ -118,7 +119,9 @@ def add_payment_type(request):
         form = AddPaymentTypeForm(request.POST)
 
         if form.is_valid():
-            form.save(commit=True)
+            post = form.save(commit=False)
+            post.customer_id = request.user.id
+            post.save()
             # Setting next so the django reroutes user to previous page
             next = request.POST.get('next', '/')
             # Redirect to previous page
@@ -127,8 +130,10 @@ def add_payment_type(request):
             print(form.errors)
     return render(request, 'initial_site/add_payment_type.html', {'form': form})
 
+
 def add_product_to_order(request, pk):
     product = models.Product.objects.get(id = pk)
+
 
     try:
         order_pk = models.Order.objects.get(customer = request.user.id, active = 1)
@@ -168,4 +173,3 @@ def order_detail(request):
             'payment_types': payment_types,
             'pk': pk
             })
-

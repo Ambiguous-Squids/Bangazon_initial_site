@@ -1,29 +1,35 @@
 from django import forms
 from initial_site.models import Product, PaymentType, Customer
 from django.contrib.auth.models import User
+from django.utils.translation import ugettext_lazy as _
 
 
 class AddProductForm(forms.ModelForm):
-    name = forms.CharField(max_length=50, help_text="Please enter the name of your product.")
     description = forms.CharField(max_length=4000, help_text="Please enter the description of your product.")
-    price = forms.DecimalField(max_digits=15, decimal_places=2, help_text="Please enter the price of your product.")
 
     class Meta:
         model = Product
-        fields = ('customer', 'name', 'product_type', 'description', 'price', 'quantity')
+        help_texts = {
+            'name': _('Please enter the name of your product.'),
+            'product_type': _('Please choose a category'),
+            'price': _('Please enter a price.'),
+            'quantity': _('Please enter a quantity.')
+        }
+        fields = ('name', 'product_type', 'description', 'price', 'quantity')
 
 class AddPaymentTypeForm(forms.ModelForm):
-    payment_type_name = forms.CharField(max_length=16,help_text="Please enter the type of card you would like to add.")
-    first_name = forms.CharField(max_length=50,help_text="Please your first name")
-    last_name = forms.CharField(max_length=50,help_text="Please your last name")
-    account = forms.CharField(max_length=16,help_text="Please enter the card number.")
-    expiration_date = forms.DateField(help_text= "Please enter the expiration date.")
-    ccv = forms.CharField(max_length=3,help_text="Please enter the ccv code.")
-
 
     class Meta:
         model = PaymentType
-        fields = ('customer','payment_type_name', 'first_name', 'last_name', 'account', 'expiration_date', 'ccv')
+        help_texts = {
+            'payment_type_name': _('Please enter the type of card you would like to add.'),
+            'first_name': _('Please enter your first name'),
+            'last_name': _('Please enter your last name'),
+            'account': _('Please enter the card number.'),
+            'expiration_date': _('Please enter the expiration date.'),
+            'ccv': _('Please enter the ccv code.')
+        }
+        fields = ('payment_type_name', 'first_name', 'last_name', 'account', 'expiration_date', 'ccv')
 
 class UserForm(forms.ModelForm):
     """
