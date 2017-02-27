@@ -11,7 +11,26 @@
     
 {% endfor %}
 
-{{active_order.payment_type}}
 Total: {{total}}
+</br>
+
+{% if payment_types %}
+    <select>
+    {% for payment_type in payment_types %}
+        <option value="{{payment_type}}">{{payment_type.payment_type_name}} - {{payment_type.account}}</option>
+    {% endfor %}
+    </select>
+{# {% else %} #}
+</br>
+{% endif %}
+
+
+
+<a href="{% url 'add_payment_type' %}">Add a payment type</a>
+</br>
+
+
+
+<button action="">Complete order</button>
 
 {% endblock %}
