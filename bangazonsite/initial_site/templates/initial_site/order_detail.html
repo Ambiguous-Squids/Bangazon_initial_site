@@ -1,0 +1,17 @@
+{% extends "base_generic.html" %}
+{% block content %}
+
+
+
+{% for product in products %}
+    <ul>
+        <li>{{product.name}} - ${{product.price}}</li>
+        
+    </ul>
+    
+{% endfor %}
+
+{{active_order.payment_type}}
+Total: {{total}}
+
+{% endblock %}
