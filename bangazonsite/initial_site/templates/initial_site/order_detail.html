@@ -1,21 +1,30 @@
 {% extends "base_generic.html" %}
 {% block content %}
 
-
+<h1>Checkout</h1>
+<div class="row">
+  <h3><div class="col-sm-4">Products</div></h3>
+  <h3><div class="col-sm-4">Quantity</div></h3>
+  <h3><div class="col-sm-4">Price</div></h3>
+</div>
 
 {% for product in products %}
-    <ul>
-        <li>{{product.name}} - ${{product.price}}</li>
-        
-    </ul>
-    
-{% endfor %}
 
-Total: {{total}}
-</br>
+<div class="row">
+  <div class="col-sm-4">{{product.name}}</div>
+  <div class="col-sm-4">{{product.quantity}}</div>
+  <div class="col-sm-4">${{product.price}}</div>
+</div>
+
+
+{% endfor %}
+<br>
+Total: ${{total}}
+</br><br>
 {% if payment_types %}
 <form action="" method="POST">
     {% csrf_token %}
+    Choose Payment Type:<br>
     <select id="select_payment" name="select_payment" required>
     {% for payment_type in payment_types %}
         <option value="{{payment_type.id}}">{{payment_type.id}}. {{payment_type.payment_type_name}} - {{payment_type.account}}</option>
@@ -25,7 +34,8 @@ Total: {{total}}
 </br>
 
 {% endif %}
-
+<a href="{% url 'add_payment_type' %}">Add a payment type</a>
+<br>
 
 
 </br>
@@ -35,6 +45,5 @@ Total: {{total}}
 
 </form>
 
-<a href="{% url 'add_payment_type' %}">Add a payment type</a>
 
 {% endblock %}
