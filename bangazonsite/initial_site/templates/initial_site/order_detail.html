@@ -1,49 +1,27 @@
-{% extends "base_generic.html" %}
-{% block content %}
-
-<h1>Checkout</h1>
-<!-- <div class="row">
-  <h3><div class="col-sm-4">Products</div></h3>
-  <h3><div class="col-sm-4">Quantity</div></h3>
-  <h3><div class="col-sm-4">Price</div></h3>
-</div> -->
-
-{% for product in products %}
-
+{% extends "base_generic.html" %} {% block content %}
+<h1>Checkout</h1> {% for product in products %}
 <div class="row">
   <h4><div class="col-sm-4">{{product.name}}</div></h4>
   <h4><div class="col-sm-4">{{product.quantity}}</div></h4>
   <h4><div class="col-sm-4 text-success">${{product.price}}</div></h4>
 </div>
-
-
 {% endfor %}
-
 <h4 class="text-success">Total: ${{total}}</h4>
-<br>
-{% if payment_types %}
+<br> {% if payment_types %}
 <form action="" method="POST">
-    {% csrf_token %}
-    <h3>Choose Payment Type:</h3>
-    <select id="select_payment" name="select_payment" required>
+  {% csrf_token %}
+  <h3>Choose Payment Type:</h3>
+  <select id="select_payment" name="select_payment" required>
     {% for payment_type in payment_types %}
-        <option value="{{payment_type.id}}">{{payment_type.id}}. {{payment_type.payment_type_name}} - {{payment_type.account}}</option>
+    <option value="{{payment_type.id}}">{{payment_type.id}}. {{payment_type.payment_type_name}} - {{payment_type.account}}</option>
     {% endfor %}
-    </select>
-{# {% else %} #}
-</br>
-
-{% endif %}
-<a href="{% url 'add_payment_type' %}">Add a payment type</a>
-<br>
-
-
-</br>
-
-
-<button >Complete order</button>
-
+  </select>
+  {# {% else %} #}
+  </br>
+  {% endif %}
+  <a href="{% url 'add_payment_type' %}">Add a payment type</a>
+  <br>
+  </br>
+  <button class="btn btn-success">Complete order</button>
 </form>
-
-
 {% endblock %}
