@@ -118,7 +118,74 @@
 		"price": "444.69",
 		"quantity": 88
 	}
-}, {
+}, 
+
+{
+	"model": "initial_site.product",
+	"pk": 7,
+	"fields": {
+		"customer": 3,
+		"product_type": 3,
+		"name": "Drumsticks",
+		"description": "Come in pairs.",
+		"price": "12.99",
+		"quantity": 100
+	}
+},
+
+{
+	"model": "initial_site.product",
+	"pk": 8,
+	"fields": {
+		"customer": 3,
+		"product_type": 3,
+		"name": "Ukulele",
+		"description": "Tiny.",
+		"price": "700",
+		"quantity": 40
+	}
+},
+
+{
+	"model": "initial_site.product",
+	"pk": 9,
+	"fields": {
+		"customer": 3,
+		"product_type": 3,
+		"name": "Abbey Road on Vinyl",
+		"description": "Paul is dead.",
+		"price": "49.99",
+		"quantity": 10
+	}
+},
+
+{
+	"model": "initial_site.product",
+	"pk": 10,
+	"fields": {
+		"customer": 3,
+		"product_type": 3,
+		"name": "Hi-Hat Stand",
+		"description": "The Iron Cobra 205 Hi-Hat Stand by Tama has five different levels of tension that can be achieved quickly by using the five easily visible settings. The rubber insulator at the end of the rod prevents the rod from loosening, as well as, the noise caused by metal-to-metal contact. Since the foot pedal can be rotated around the tripod base, the swivel foot feature greatly expands floor space and set-up flexibility.",
+		"price": "444.69",
+		"quantity": 88
+	}
+},
+
+{
+	"model": "initial_site.product",
+	"pk": 11,
+	"fields": {
+		"customer": 3,
+		"product_type": 3,
+		"name": "CHINA Cymbal",
+		"description": "These brass alloy models sound and look great, and let you get into playing MEINL at very realistic prices. The HCS series from MEINL is designed to offer all of the cymbal types and sizes normally found in professional lines to beginners in order to deliver the same sound options a working drummer may look for. The Meinl HCS 12in china delivers an immediate cutting and trashy, brash response that works as a great accent to round out your drum kit. This model works perfectly as an effect cymbal that will stand out and compliment the other sounds in your set up. Meinl HCS cymbals are recommended for any style of music a beginner may be getting into while exploring their sound.",
+		"price": "444.69",
+		"quantity": 88
+	}
+},
+
+{
 	"model": "initial_site.order",
 	"pk": 1,
 	"fields": {
