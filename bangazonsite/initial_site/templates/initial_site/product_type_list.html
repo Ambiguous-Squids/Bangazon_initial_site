@@ -1,11 +1,21 @@
 {% extends "base_generic.html" %}
 {% block content %}
-	<h1>Product Types</h1>
+<!-- 	<h1>Product Types</h1>
 	{% for department in departments_list %}
 		<ul>
 			<li>
 		 		<a href="{{ department.get_absolute_url }}">{{ department.label }}</a>
 			</li>
 		</ul>
-		{% endfor %}
+		{% endfor %} -->
+<h2>Categories</h2>
+	{% for department in departments_list %}
+		<h3><a href="{{ department.get_absolute_url }}">{{ department.label }}({{department.num_products}})</a></h3>
+ 		{% for product in department.products %}
+			<div>
+				<a href="{{ product.get_absolute_url }}">{{ product.name }} - </a>${{product.price}}
+			</div>
+ 		{% endfor %}
+	{% endfor %}
 {% endblock %}
+

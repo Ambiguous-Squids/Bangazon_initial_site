@@ -81,8 +81,15 @@ def index(request):
 
 def get_product_types(request):
     departments = models.ProductType.objects.order_by('label')
+    products = models.Product.objects.all()
+
+    for dept in departments:
+        dept.products = models.Product.objects.filter(product_type=dept.id).order_by('-pk')[:20]
+        dept.num_products = models.Product.objects.all().filter(product_type = dept.id).count()
+    
+
     return render(request, 'initial_site/product_type_list.html', {
-        'departments_list': departments
+        'departments_list': departments,
     })
 
 def get_products_of_type(request, pk):
