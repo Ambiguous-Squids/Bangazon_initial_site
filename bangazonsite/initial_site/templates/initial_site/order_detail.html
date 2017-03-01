@@ -1,40 +1,52 @@
-{% extends "base_generic.html" %}
-{% block content %}
-
-
-
-{% for product in products %}
-    <ul>
-        <li>{{product.name}} - ${{product.price}}</li>
-        
-    </ul>
-    
-{% endfor %}
-
-Total: {{total}}
-</br>
-{% if payment_types %}
-<form action="" method="POST">
-    {% csrf_token %}
-    <select id="select_payment" name="select_payment" required>
-    {% for payment_type in payment_types %}
-        <option value="{{payment_type.id}}">{{payment_type.id}}. {{payment_type.payment_type_name}} - {{payment_type.account}}</option>
+{% extends "base_generic.html" %} {% block content %}
+<h1>Checkout</h1>
+<table class="table table-hover">
+  <thead>
+    <tr class="textSize info">
+      <th>Product</th>
+      <th>Quantity</th>
+      <th>Total Price</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for product in products %}
+    <tr class="active">
+      <td><span class="textSize">{{product.name}}</span> - {{product.description}}</td>
+      <td><span class="textSize">{{product.quantity}}</span></td>
+      <td><span class="textSize">${{product.price}}</span></td>
+    </tr>
     {% endfor %}
-    </select>
-{# {% else %} #}
-</br>
-
-{% endif %}
-
-
-
-</br>
-
-
-<button >Complete order</button>
-
-</form>
-
+  </tbody>
+  <tfoot>
+    <tr class="info">
+      <td class="textSize">Total</td>
+      <td></td>
+      <td><span class="textSize text-success">${{total}}</span></td>
+    </tr>
+  </tfoot>
+</table>
+<div class="row">
+  <div class="col-sm-3">
+    {% if payment_types %}
+    <form action="" method="POST">
+      {% csrf_token %}
+      <div class="form-group">
+        <h3><label for="sell">Choose Payment Type:</label></h3>
+        <select class="form-control" id="sell">
+          {% for payment_type in payment_types %}
+          <option value="{{payment_type.id}}">{{payment_type.payment_type_name}} - {{payment_type.account}}
+          </option>
+          {% endfor %}
+        </select>
+      </div>
+      </br>
+      {% endif %}
+    </form>
+  </div>
+</div>
 <a href="{% url 'add_payment_type' %}">Add a payment type</a>
-
+<br>
+</br>
+<button class="btn btn-success">Complete order</button>
+</form>
 {% endblock %}
