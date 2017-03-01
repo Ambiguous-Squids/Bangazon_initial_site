@@ -30,3 +30,7 @@ urlpatterns += [
     url(r'^success/', views.success.as_view(), name='success')
 
 ]
+
+urlpatterns += [
+    url(r'^no_items/', views.no_items, name='no_items'),
+]

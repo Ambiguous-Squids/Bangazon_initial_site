@@ -2,11 +2,8 @@
 {% block content %}
 <h1>Add a Product</h1>
 
-<!-- REMOVE AFTER TESTING WE DONT REALLY WANT THIS HERE -->
-
-
 <div>
-    <form id="add_product_form" method="post" action="/add_product/">
+    <form id="add_product_form" method="post" action="{% url 'add_product' %}">
         {% csrf_token %}
         {% for hidden in form.hidden_fields %}
             {{ hidden }}
