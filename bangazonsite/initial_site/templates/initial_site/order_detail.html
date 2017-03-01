@@ -2,29 +2,29 @@
 {% block content %}
 
 <h1>Checkout</h1>
-<div class="row">
+<!-- <div class="row">
   <h3><div class="col-sm-4">Products</div></h3>
   <h3><div class="col-sm-4">Quantity</div></h3>
   <h3><div class="col-sm-4">Price</div></h3>
-</div>
+</div> -->
 
 {% for product in products %}
 
 <div class="row">
-  <div class="col-sm-4">{{product.name}}</div>
-  <div class="col-sm-4">{{product.quantity}}</div>
-  <div class="col-sm-4">${{product.price}}</div>
+  <h4><div class="col-sm-4">{{product.name}}</div></h4>
+  <h4><div class="col-sm-4">{{product.quantity}}</div></h4>
+  <h4><div class="col-sm-4 text-success">${{product.price}}</div></h4>
 </div>
 
 
 {% endfor %}
+
+<h4 class="text-success">Total: ${{total}}</h4>
 <br>
-Total: ${{total}}
-</br><br>
 {% if payment_types %}
 <form action="" method="POST">
     {% csrf_token %}
-    Choose Payment Type:<br>
+    <h3>Choose Payment Type:</h3>
     <select id="select_payment" name="select_payment" required>
     {% for payment_type in payment_types %}
         <option value="{{payment_type.id}}">{{payment_type.id}}. {{payment_type.payment_type_name}} - {{payment_type.account}}</option>
