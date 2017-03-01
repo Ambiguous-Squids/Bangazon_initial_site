@@ -5,3 +5,13 @@
 .textSize {
     font-size: 1.5em;
 }
+
+.float-left{
+	float:left;
+}
+
+.float-right{
+	float:right;
+	margin-right: 20px;
+}
+
