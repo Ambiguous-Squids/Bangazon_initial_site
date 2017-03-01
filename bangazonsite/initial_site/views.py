@@ -67,7 +67,7 @@ def index(request):
     products = models.Product.objects.all()
 
     for dept in departments:
-        dept.products = models.Product.objects.filter(product_type=dept.id)[:5]
+        dept.products = models.Product.objects.filter(product_type=dept.id).order_by('-pk')[:5]
 
     # Generate counts of some of the main objects
     num_product_types = models.ProductType.objects.all().count()
