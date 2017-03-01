@@ -5,21 +5,16 @@
 
 	  <p>Welcome to <em>Bangazon!</em>, a family company!  Here to serve your needs!</p>
 
-	<h2>Meet the Crew</h2>
+	<h2>Categories</h2>
+	{% for department in departments_list %}
+		<h3><a href="{{ department.get_absolute_url }}">{{ department.label }}</a></h3>
+ 		{% for product in department.products %}
+			<div>
+				<a href="{{ product.get_absolute_url }}">{{ product.name }}</a>
+			</div>
+ 		{% endfor %}
+	{% endfor %}
 
-	  <p>Say hello to one of our future tech leaders</p>
-	  <ul>
-	  	<li>Matt "The McCoordinator" McCord</li>
-	  	<li>Nick "Web API King" Chemsak</li>
-	  	<li>Ali "Google Fu" Kimbrell</li>
-	  	<li>Drew "The Dmart" Martin</li>
-	  	<li>Alex "The Armenian" Simonian</li>
-	  </ul>
 
-	<h2>What we current offer at The Shoppe!</h2>
-	  <ul>
-	    <li><strong>Current categories:</strong> {{ num_product_types }}</li>
-	    <li><strong>Products in stock:</strong> {{ num_products }}</li>
-	  </ul>
 
 {% endblock %}
