@@ -5,16 +5,14 @@
 
 	  <p>Welcome to <em>Bangazon!</em>, a family company!  Here to serve your needs!</p>
 
-	<h2>Meet the Crew</h2>
-
-	  <p>Say hello to one of our future tech leaders</p>
-	  <ul>
-	  	<li>Matt "The McCoordinator" McCord</li>
-	  	<li>Nick "Web API King" Chemsak</li>
-	  	<li>Ali "Google Fu" Kimbrell</li>
-	  	<li>Drew "The Dmart" Martin</li>
-	  	<li>Alex "The Armenian" Simonian</li>
-	  </ul>
+	<h2>Categories</h2>
+	{% for department in departments_list %}
+		<ul>
+			<li>
+		 		<a href="{{ department.get_absolute_url }}">{{ department.label }}</a>
+			</li>
+		</ul>
+		{% endfor %}
 
 	<h2>What we current offer at The Shoppe!</h2>
 	  <ul>
