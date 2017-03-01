@@ -1,11 +1,13 @@
 from django import forms
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse, HttpResponseRedirect
 from django.views.generic.list import ListView
 from django.views.generic.base import TemplateView
 from django.views.generic.detail import DetailView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
+from django.core.exceptions import ObjectDoesNotExist
+
 
 
 from . import models
@@ -120,7 +122,7 @@ def add_product(request):
             post = form.save(commit=False)
             post.customer_id = request.user.id
             post.save()
-            return HttpResponseRedirect(redirect_to='/')
+            return redirect('index')
         else:
             print(form.errors)
     return render(request, 'initial_site/add_product.html', {'form': form})
@@ -136,18 +138,14 @@ def add_payment_type(request):
             post = form.save(commit=False)
             post.customer_id = request.user.id
             post.save()
-            # Setting next so the django reroutes user to previous page
-            next = request.POST.get('next', '/')
-            # Redirect to previous page
-            return HttpResponseRedirect(next)
+            return redirect('order')
         else:
             print(form.errors)
     return render(request, 'initial_site/add_payment_type.html', {'form': form})
 
-
+@login_required
 def add_product_to_order(request, pk):
     product = models.Product.objects.get(id = pk)
-
 
     try:
         order_pk = models.Order.objects.get(customer = request.user.id, active = 1)
@@ -159,11 +157,14 @@ def add_product_to_order(request, pk):
 
     new_order.products.add(product)
 
-    return HttpResponseRedirect(redirect_to='/order')
+    return redirect('order')
 
-    
+@login_required    
 def order_detail(request):
-    pk = models.Order.objects.get(customer = request.user.id, active = 1).id
+    try:
+        pk = models.Order.objects.get(customer = request.user.id, active = 1).id
+    except:
+        return redirect('no_items')
     active_order = models.Order.objects.get(id = pk)
     products = active_order.products.all()
     payment_types = models.PaymentType.objects.filter(customer = request.user.id)
@@ -186,4 +187,8 @@ def order_detail(request):
             'total': total,
             'payment_types': payment_types,
             'pk': pk
-            })
+        })
+
+@login_required
+def no_items(request):
+    return render(request, 'initial_site/no_items.html')

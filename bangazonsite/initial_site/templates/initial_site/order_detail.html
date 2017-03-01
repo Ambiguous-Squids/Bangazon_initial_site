@@ -32,7 +32,7 @@
       {% csrf_token %}
       <div class="form-group">
         <h3><label for="sell">Choose Payment Type:</label></h3>
-        <select class="form-control" id="sell">
+        <select class="form-control" id="select_payment" name="select_payment" required>
           {% for payment_type in payment_types %}
           <option value="{{payment_type.id}}">{{payment_type.payment_type_name}} - {{payment_type.account}}
           </option>
@@ -41,12 +41,11 @@
       </div>
       </br>
       {% endif %}
-    </form>
+	<a href="{% url 'add_payment_type' %}">Add a payment type</a>
+	<br>
+	</br>
+	<button class="btn btn-success">Complete order</button>    
   </div>
 </div>
-<a href="{% url 'add_payment_type' %}">Add a payment type</a>
-<br>
-</br>
-<button class="btn btn-success">Complete order</button>
 </form>
 {% endblock %}
