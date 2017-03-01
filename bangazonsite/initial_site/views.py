@@ -63,13 +63,20 @@ def index(request):
     View function for the splash page of site.
     @asimonia
     """
+    departments = models.ProductType.objects.order_by('label')
+    products = models.Product.objects.all()
+
+    for dept in departments:
+        dept.products = models.Product.objects.filter(product_type=dept.id).order_by('-pk')[:5]
+
     # Generate counts of some of the main objects
     num_product_types = models.ProductType.objects.all().count()
     num_products = models.Product.objects.all().count()
 
     return render(request, 'index.html', {
         'num_products':num_products,
-        'num_product_types':num_product_types
+        'num_product_types':num_product_types,
+        'departments_list': departments
     })
 
 def get_product_types(request):
