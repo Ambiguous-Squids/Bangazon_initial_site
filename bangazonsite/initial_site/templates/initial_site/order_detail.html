@@ -1,11 +1,23 @@
 {% extends "base_generic.html" %} {% block content %}
-<h1>Checkout</h1> {% for product in products %}
-<div class="row">
-<div class="col-sm-4"><span class="textSize">{{product.name}}</span> - {{product.description}}</div></h4>
-<div class="col-sm-4"><span class="textSize">{{product.quantity}}</span></div>
-<div class="col-sm-4 text-success"><span class="textSize">${{product.price}}</span></div>
-</div>
-{% endfor %}
+<h1>Checkout</h1>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Product</th>
+      <th>Quantity</th>
+      <th>Total Price</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for product in products %}
+    <tr>
+      <td><span class="textSize">{{product.name}}</span> - {{product.description}}</td>
+      <td><span class="textSize">{{product.quantity}}</span></td>
+      <td><span class="textSize">${{product.price}}</span></td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
 <h4 class="text-success textSize">Total: ${{total}}</h4>
 <br> {% if payment_types %}
 <form action="" method="POST">
