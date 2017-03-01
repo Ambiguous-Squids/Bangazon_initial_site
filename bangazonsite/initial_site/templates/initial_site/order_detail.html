@@ -1,12 +1,12 @@
 {% extends "base_generic.html" %} {% block content %}
 <h1>Checkout</h1> {% for product in products %}
 <div class="row">
-  <h4><div class="col-sm-4">{{product.name}}</div></h4>
-  <h4><div class="col-sm-4">{{product.quantity}}</div></h4>
-  <h4><div class="col-sm-4 text-success">${{product.price}}</div></h4>
+<div class="col-sm-4"><span class="textSize">{{product.name}}</span> - {{product.description}}</div></h4>
+<div class="col-sm-4"><span class="textSize">{{product.quantity}}</span></div>
+<div class="col-sm-4 text-success"><span class="textSize">${{product.price}}</span></div>
 </div>
 {% endfor %}
-<h4 class="text-success">Total: ${{total}}</h4>
+<h4 class="text-success textSize">Total: ${{total}}</h4>
 <br> {% if payment_types %}
 <form action="" method="POST">
   {% csrf_token %}
