@@ -9,7 +9,12 @@
 	{% for department in departments_list %}
 		<ul>
 			<li>
-		 		<a href="{{ department.get_absolute_url }}">{{ department.label }}</a>
+		 		<h3><a href="{{ department.get_absolute_url }}">{{ department.label }}</a></h3>
+		 		{% for product in department.products %}
+		 		<ul>
+					<li><a href="{{ product.get_absolute_url }}">{{ product.name }}</a></li>
+		 		</ul>
+		 		{% endfor %}
 			</li>
 		</ul>
 		{% endfor %}

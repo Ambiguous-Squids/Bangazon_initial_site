@@ -64,6 +64,10 @@ def index(request):
     @asimonia
     """
     departments = models.ProductType.objects.order_by('label')
+    products = models.Product.objects.all()
+
+    for dept in departments:
+        dept.products = models.Product.objects.filter(product_type=dept.id)
 
     # Generate counts of some of the main objects
     num_product_types = models.ProductType.objects.all().count()
