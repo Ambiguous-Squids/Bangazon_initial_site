@@ -128,6 +128,3 @@ class OrderItems(models.Model):
 
     class Meta:
         verbose_name_plural = 'Order Items'
-
-    def __str__(self):
-        return 'The order item string is: '.format(self.product, self.order)

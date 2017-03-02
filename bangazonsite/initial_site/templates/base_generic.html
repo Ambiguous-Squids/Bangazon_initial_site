@@ -35,7 +35,7 @@
             <li><a>Welcome {{ user.get_username }}!</a></li>
             <li>
              <a href="/order/">
-                <span class="glyphicon glyphicon-shopping-cart">({{views.order_detail.products}})</span>
+                <span class="glyphicon glyphicon-shopping-cart">({{ cart }})</span>
               </a>
             </li>
             <li><a href="{% url 'logout'%}?next={{request.path}}">Logout</a></li>
