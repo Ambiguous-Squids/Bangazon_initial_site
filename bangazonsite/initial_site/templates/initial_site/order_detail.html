@@ -9,11 +9,11 @@
     </tr>
   </thead>
   <tbody>
-    {% for product in products %}
+    {% for product in product_context %}
     <tr class="active">
-      <td><span class="textSize">{{product.name}}</span> - {{product.description}}</td>
-      <td><span class="textSize">{{product.quantity}}</span></td>
-      <td><span class="textSize">${{product.price}}</span></td>
+      <td><span class="textSize">{{ product.0 }}</span> - {{ product.1 }}</td>
+      <td><span class="textSize">{{ product.2 }}</span></td>
+      <td><span class="textSize">${{ product.3 }}</span></td>
     </tr>
     {% endfor %}
   </tbody>

@@ -14,6 +14,8 @@ from . import models
 from .models import User
 from .forms import AddProductForm, AddPaymentTypeForm, UserForm, UserProfileForm
 
+from collections import Counter
+
 # class views
 
 class productDetailView(DetailView):
@@ -178,6 +180,12 @@ def order_detail(request):
     for product in products:
         total += product.price
 
+    product_context = []
+    prod = Counter(products)
+    for p, q in prod.items():
+        product_context.append((p.name, p.description, q, p.price * q))
+
+
     if request.method == 'POST':
         payment = models.PaymentType.objects.get(id = request.POST['select_payment'])
         active_order.payment_type = payment
@@ -188,7 +196,7 @@ def order_detail(request):
     else:
         return render(request, 'initial_site/order_detail.html', {
             'active_order': active_order,
-            'products': products,
+            'product_context': product_context,
             'total': total,
             'payment_types': payment_types,
             'pk': pk
