@@ -150,13 +150,17 @@ def add_product_to_order(request, pk):
 
     try:
         # Try to add to an active order
-        order_pk = models.Order.objects.get(customer = request.user.id, active = 1)
-        new_order = models.Order.objects.get(id = order_pk.id)
-    except:
+        print("Try to add to an active order")
+        customer_id = models.Customer.objects.get(user = request.user.id)
+        new_order = models.Order.objects.get(customer = customer_id, active = 1)
+        print("Completed try block")
+    except ObjectDoesNotExist:
         # If no active order, let's create one
+        print("If no active order, let's create one")
         customer = models.Customer.objects.get(user = request.user)
         new_order = models.Order.objects.create(active = 1, customer = customer, payment_type = None)
         new_order.save()
+        print("Completed except block")
 
     orderitem = models.OrderItems(product=product, order=new_order)
     orderitem.save()
@@ -166,7 +170,8 @@ def add_product_to_order(request, pk):
 @login_required    
 def order_detail(request):
     try:
-        pk = models.Order.objects.get(customer = request.user.id, active = 1).id
+        customer_id = models.Customer.objects.get(user = request.user.id)
+        pk = models.Order.objects.get(customer = customer_id, active = 1).id
     except:
         return redirect('no_items')
     active_order = models.Order.objects.get(id = pk)
