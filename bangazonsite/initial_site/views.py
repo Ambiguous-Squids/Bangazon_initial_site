@@ -158,7 +158,8 @@ def add_product_to_order(request, pk):
         new_order = models.Order.objects.create(active = 1, customer = customer, payment_type = None)
         new_order.save()
 
-    new_order.products.add(product)
+    orderitem = models.OrderItems(product=product, order=new_order)
+    orderitem.save()
 
     return redirect('order')
 
