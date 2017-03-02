@@ -145,12 +145,15 @@ def add_payment_type(request):
 
 @login_required
 def add_product_to_order(request, pk):
+    # Get the product based on what the user clicked
     product = models.Product.objects.get(id = pk)
 
     try:
+        # Try to add to an active order
         order_pk = models.Order.objects.get(customer = request.user.id, active = 1)
         new_order = models.Order.objects.get(id = order_pk.id)
     except:
+        # If no active order, let's create one
         customer = models.Customer.objects.get(user = request.user)
         new_order = models.Order.objects.create(active = 1, customer = customer, payment_type = None)
         new_order.save()

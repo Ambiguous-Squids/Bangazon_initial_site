@@ -112,7 +112,7 @@ class Order(models.Model):
     active = models.BooleanField(default=True)
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
     payment_type = models.ForeignKey(PaymentType, on_delete=models.CASCADE, blank = True, null = True)
-    products = models.ManyToManyField(Product)
+    products = models.ManyToManyField(Product, through='OrderItems')
 
 
     class Meta:
@@ -120,3 +120,14 @@ class Order(models.Model):
 
     def __str__(self):
         return 'Customer {} account is active? {}'.format(self.customer, self.active)
+
+class OrderItems(models.Model):
+    """Intermediary model for Product and Order"""
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    order = models.ForeignKey(Order, on_delete=models.CASCADE)
+
+    class Meta:
+        verbose_name_plural = 'Order Items'
+
+    def __str__(self):
+        return 'The order item string is: '.format(self.product, self.order)
