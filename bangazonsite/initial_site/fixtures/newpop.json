@@ -1,0 +1,131 @@
+[{
+	"model": "initial_site.producttype",
+	"pk": 1,
+	"fields": {
+		"label": "Video Games"
+	}
+}, {
+	"model": "initial_site.producttype",
+	"pk": 2,
+	"fields": {
+		"label": "Movies"
+	}
+}, {
+	"model": "initial_site.producttype",
+	"pk": 3,
+	"fields": {
+		"label": "Baseball cards"
+	}
+}, {
+	"model": "initial_site.product",
+	"pk": 7,
+	"fields": {
+		"customer": 2,
+		"product_type": 2,
+		"name": "Jaws",
+		"description": "alalalal",
+		"price": "30.00",
+		"quantity": 50
+	}
+}, {
+	"model": "initial_site.product",
+	"pk": 8,
+	"fields": {
+		"customer": 2,
+		"product_type": 2,
+		"name": "ET",
+		"description": "phone home",
+		"price": "69.99",
+		"quantity": 40
+	}
+}, {
+	"model": "initial_site.product",
+	"pk": 9,
+	"fields": {
+		"customer": 2,
+		"product_type": 1,
+		"name": "Mario 64",
+		"description": "polygons aplenty",
+		"price": "90.00",
+		"quantity": 10
+	}
+}, {
+	"model": "initial_site.product",
+	"pk": 10,
+	"fields": {
+		"customer": 2,
+		"product_type": 1,
+		"name": "Megaman",
+		"description": "dr. wiley",
+		"price": "70.00",
+		"quantity": 5
+	}
+}, {
+	"model": "initial_site.product",
+	"pk": 11,
+	"fields": {
+		"customer": 2,
+		"product_type": 3,
+		"name": "Pete Rose",
+		"description": "Gambla",
+		"price": "100.00",
+		"quantity": 5
+	}
+}, {
+	"model": "initial_site.product",
+	"pk": 12,
+	"fields": {
+		"customer": 2,
+		"product_type": 3,
+		"name": "A rod",
+		"description": "steroids",
+		"price": "99.99",
+		"quantity": 40
+	}
+}, {
+	"model": "auth.user",
+	"pk": 3,
+	"fields": {
+		"password": "pbkdf2_sha256$30000$pJCefgmBRMCC$pJXWfoSqM06gw9Gh0nQjwmn2WNorh9hYldcqHsqixKk=",
+		"last_login": "2017-03-02T16:33:45.134Z",
+		"is_superuser": true,
+		"username": "asimonia",
+		"first_name": "",
+		"last_name": "",
+		"email": "",
+		"is_staff": true,
+		"is_active": true,
+		"date_joined": "2017-03-02T16:33:31.653Z",
+		"groups": [],
+		"user_permissions": []
+	}
+}, {
+	"model": "auth.user",
+	"pk": 4,
+	"fields": {
+		"password": "pbkdf2_sha256$30000$6OVaLlkoRzJz$wo9KurjMLZ59dbGca/vFc7Xm4gi3vHtJkNZFfYwcARc=",
+		"last_login": "2017-03-02T16:36:31.381Z",
+		"is_superuser": false,
+		"username": "baby",
+		"first_name": "baby",
+		"last_name": "first app",
+		"email": "baby@gmail.com",
+		"is_staff": false,
+		"is_active": true,
+		"date_joined": "2017-03-02T16:36:24.147Z",
+		"groups": [],
+		"user_permissions": []
+	}
+}, {
+	"model": "initial_site.customer",
+	"pk": 2,
+	"fields": {
+		"user": 4,
+		"account_created": "2017-03-02T16:36:24.187Z",
+		"address_1": "1000 Maple",
+		"address_2": "",
+		"city": "Germantown",
+		"state": "TN",
+		"zip_code": "38139"
+	}
+}]
